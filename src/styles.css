@@ -151,8 +151,22 @@ a.btn {
   cursor: pointer;
 }
 
-.row.locked > span:first-child {
+.row.locked .locked-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--ink-3);
+}
+
+.lock-icon {
+  flex: none;
+  color: var(--ink-3);
+}
+
+.stat.locked {
+  justify-content: center;
+  color: var(--ink-3);
+  cursor: pointer;
 }
 
 /* 웹 버전 전용 뒤로 버튼 (토스 빌드에는 없어요) */

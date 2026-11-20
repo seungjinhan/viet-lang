@@ -7,7 +7,7 @@ import { EMPTY, dueKeys, markStudied, reviewAnswer } from "../lib/progress";
 import { makeQuiz } from "../lib/quiz";
 import type { Go } from "../routes";
 import { useStore } from "../store";
-import { AppOnlySheet, InfiniteList, ItemRow, NavBar, QuestionView, Vi } from "../ui";
+import { AppOnlySheet, InfiniteList, LockIcon, ItemRow, NavBar, QuestionView, Vi } from "../ui";
 
 export const LANGUAGES: { code: string; name: string }[] = [
   { code: "ko", name: "한국어" },
@@ -25,9 +25,12 @@ function Row({ label, value, onClick, strong = false }: { label: string; value?:
   // 웹 버전은 앱 정보만 열고, 나머지는 잠가서 앱으로 안내해요.
   if (WEB && onLocked) {
     return (
-      <button type="button" className="row locked" onClick={onLocked}>
-        <span className={strong ? "strong" : ""}>{label}</span>
-        <span className="v">🔒 앱에서</span>
+      <button type="button" className="row locked" onClick={onLocked} aria-label={`${label} (앱에서 쓸 수 있어요)`}>
+        <span className="locked-label">
+          <LockIcon size={16} />
+          <span className={strong ? "strong" : ""}>{label}</span>
+        </span>
+        <span className="v">앱에서</span>
       </button>
     );
   }

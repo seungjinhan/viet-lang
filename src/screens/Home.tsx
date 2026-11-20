@@ -7,7 +7,7 @@ import { WEB } from "../lib/platform";
 import { dueKeys, streak } from "../lib/progress";
 import type { Go, Tab } from "../routes";
 import { useStore } from "../store";
-import { AppOnlySheet, ItemRow, NavBar, Vi } from "../ui";
+import { AppOnlySheet, ItemRow, LockIcon, NavBar, Vi } from "../ui";
 
 function Todo({ done, title, sub, onClick }: { done: boolean; title: ReactNode; sub: ReactNode; onClick?: () => void }) {
   return (
@@ -144,8 +144,8 @@ export function HomeScreen({ go, selectTab }: { go: Go; selectTab: (tab: Tab) =>
       <div className="grid2">
         {/* 웹 버전은 복습을 잠그고 앱으로 안내해요. */}
         {WEB ? (
-          <button type="button" className="stat" onClick={() => setAppOnly(true)}>
-            <b>🔒</b>
+          <button type="button" className="stat locked" onClick={() => setAppOnly(true)}>
+            <LockIcon size={24} />
             <span className="t3">복습은 앱에서</span>
           </button>
         ) : (
