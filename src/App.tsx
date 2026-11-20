@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { LESSONS_READY } from "./lib/features";
-import { WEB, logEvent } from "./lib/platform";
+import { APP_URL, WEB, logEvent } from "./lib/platform";
 import { TABS, type Route, type Tab } from "./routes";
 import { CurriculumScreen } from "./screens/Curriculum";
 import { HomeScreen } from "./screens/Home";
@@ -55,6 +55,12 @@ export function App() {
         <Banner tone="error" action={<button type="button" className="link" onClick={retrySave}>다시 시도</button>}>
           <strong>기록을 저장하지 못했어요.</strong> 휴대폰 저장 공간이 부족할 수 있어요. 공간을 확보한 뒤 다시 시도해 주세요.
         </Banner>
+      )}
+      {WEB && (
+        <a className="app-link" href={APP_URL} target="_blank" rel="noopener">
+          <span>토스 앱에서 더 많은 기능을 써 보세요</span>
+          <b>앱으로 바로가기 ›</b>
+        </a>
       )}
       {/* 웹 버전에는 토스 내비게이션 바가 없어서 뒤로 버튼을 둬요. 토스 빌드에는 들어가지 않아요. */}
       {(WEB || import.meta.env.DEV) && !isTab && (

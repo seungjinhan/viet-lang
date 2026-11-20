@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { PHRASES, WORDS, itemByKey, isPhrase, isWord, type Item } from "../lib/data";
 import "../lib/lessons";
 import { LANGUAGES_READY, LESSONS_READY } from "../lib/features";
+import { APP_URL, WEB } from "../lib/platform";
 import { EMPTY, dueKeys, markStudied, reviewAnswer } from "../lib/progress";
 import { makeQuiz } from "../lib/quiz";
 import type { Go } from "../routes";
@@ -20,6 +21,16 @@ export const LANGUAGES: { code: string; name: string }[] = [
 ];
 
 function Row({ label, value, onClick, strong = false }: { label: string; value?: string; onClick?: () => void; strong?: boolean }) {
+  const onLocked = useLocked();
+  // 웹 버전은 앱 정보만 열고, 나머지는 잠가서 앱으로 안내해요.
+  if (WEB && onLocked) {
+    return (
+      <button type="button" className="row locked" onClick={onLocked}>
+        <span className={strong ? "strong" : ""}>{label}</span>
+        <span className="v">🔒 앱에서</span>
+      </button>
+    );
+  }
   return (
     <button type="button" className="row" onClick={onClick} disabled={!onClick}>
       <span className={strong ? "strong" : ""}>{label}</span>
@@ -31,13 +42,36 @@ function Row({ label, value, onClick, strong = false }: { label: string; value?:
   );
 }
 
+const LockedContext = createContext<(() => void) | null>(null);
+const useLocked = () => useContext(LockedContext);
+
+/** 웹 버전에서 잠긴 메뉴를 누르면 보여 줘요. */
+function AppOnlySheet({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="sheet-backdrop" onClick={onClose}>
+      <div className="sheet" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+        <h2 className="big">앱에서 쓸 수 있어요</h2>
+        <p className="t">추가 기능을 쓰기 위해서는 앱으로 접속해 주세요.</p>
+        <a className="btn" href={APP_URL} target="_blank" rel="noopener" onClick={onClose}>
+          앱으로 연결하기
+        </a>
+        <button type="button" className="btn ghost" onClick={onClose}>
+          닫기
+        </button>
+      </div>
+    </div>
+  );
+}
+
 /** 11 더보기 */
 export function MoreScreen({ go }: { go: Go }) {
   const { p, today, update } = useStore();
   const [confirmReset, setConfirmReset] = useState(false);
   const due = dueKeys(p, today).length;
   const lang = LANGUAGES.find((l) => l.code === p.settings.language)?.name ?? "한국어";
+  const [appOnly, setAppOnly] = useState(false);
   return (
+    <LockedContext.Provider value={WEB ? () => setAppOnly(true) : null}>
     <main className="screen">
       <NavBar title="더보기" />
       <p className="group-title">공부</p>
@@ -53,7 +87,9 @@ export function MoreScreen({ go }: { go: Go }) {
       {p.settings.language === "ko" && <Row label="한글 발음 힌트" value={p.settings.hint ? "보이기" : "숨기기"} onClick={() => update((x) => ({ ...x, settings: { ...x.settings, hint: !x.settings.hint } }))} />}
       <Row label="기준 발음" value="북부(하노이)" />
       <Row label="학습 기록 지우기" onClick={() => setConfirmReset(true)} />
-      <Row label="앱 정보" value="버전 0.1.0" onClick={() => go({ s: "about" })} />
+      <LockedContext.Provider value={null}>
+        <Row label="앱 정보" value="버전 0.1.0" onClick={() => go({ s: "about" })} />
+      </LockedContext.Provider>
       {confirmReset && (
         <div className="sheet-backdrop" onClick={() => setConfirmReset(false)}>
           <div className="sheet" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
@@ -75,7 +111,9 @@ export function MoreScreen({ go }: { go: Go }) {
           </div>
         </div>
       )}
+      {WEB && appOnly && <AppOnlySheet onClose={() => setAppOnly(false)} />}
     </main>
+    </LockedContext.Provider>
   );
 }
 

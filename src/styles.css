@@ -100,6 +100,40 @@ button:disabled {
   font-size: 13px;
 }
 
+/* 웹 버전 상단: 토스 앱으로 바로가기 */
+.app-link {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #fff1ef;
+  color: var(--ink-2);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.app-link b {
+  flex: none;
+  color: var(--ng);
+  font-weight: 700;
+}
+
+a.btn {
+  text-decoration: none;
+}
+
+.row.locked {
+  cursor: pointer;
+}
+
+.row.locked > span:first-child {
+  color: var(--ink-3);
+}
+
 /* 웹 버전 전용 뒤로 버튼 (토스 빌드에는 없어요) */
 .web-back {
   display: block;

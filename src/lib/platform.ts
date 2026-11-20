@@ -3,6 +3,9 @@ import { Analytics, Storage } from "@apps-in-toss/web-framework";
 /** GitHub Pages 웹 버전 (`vite build --mode web`) */
 export const WEB = import.meta.env.MODE === "web";
 
+/** 토스 앱의 베트남어 배우기 (휴대폰에서는 토스로 열고, PC에서는 QR을 보여 줘요) */
+export const APP_URL = "https://tossminiapp.com/d/viet-lang";
+
 export async function loadJson(key: string): Promise<unknown> {
   if (WEB) {
     try {
