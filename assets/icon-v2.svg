@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="skin" cx=".5" cy=".42" r=".65"><stop offset="0" stop-color="#fbd3a6"/><stop offset=".75" stop-color="#f4c08c"/><stop offset="1" stop-color="#e8a974"/></radialGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3db3a6"/><stop offset="1" stop-color="#25877e"/></linearGradient>
+    <linearGradient id="straw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7e3ae"/><stop offset=".6" stop-color="#e8c77e"/><stop offset="1" stop-color="#d4a85c"/></linearGradient>
+    <linearGradient id="flag" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c8281f"/><stop offset=".45" stop-color="#e5372c"/><stop offset=".7" stop-color="#d22c22"/><stop offset="1" stop-color="#e5372c"/></linearGradient>
+    <filter id="wash" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".014" numOctaves="3" seed="8"/><feDisplacementMap in="SourceGraphic" scale="26"/></filter>
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+    <filter id="paper" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .28 .5 0 0 0 -.18"/></filter>
+  </defs>
+
+  <!-- 배경: 민트 · 노랑 수채 번짐 -->
+  <rect width="600" height="600" fill="#fbf5e6"/>
+  <g filter="url(#wash)">
+    <path fill="#bfe4d9" opacity=".8" d="M-30,180 q70,-50 140,-10 q50,50 20,140 q-20,90 30,160 q-50,70 -140,40 q-60,-30 -60,-140 Z"/>
+    <path fill="#ffe08a" opacity=".75" d="M120,-30 h300 q30,70 -10,130 q-70,30 -150,10 q-100,10 -150,-50 Z"/>
+    <path fill="#f9c9a8" opacity=".6" d="M480,220 q80,-20 150,20 v300 q-60,30 -120,-10 q-50,-60 -40,-150 q-10,-100 10,-160 Z"/>
+  </g>
+
+  <!-- 캐릭터 -->
+  <g transform="translate(14 128) scale(.8)">
+    <!-- 몸: 민트 티셔츠 -->
+    <g filter="url(#ink)">
+      <path d="M28,620 C34,520 92,462 196,446 L404,446 C508,462 566,520 572,620 Z" fill="url(#shirt)"/>
+      <path d="M100,620 C104,582 112,552 128,528" stroke="#1d6b63" stroke-width="5" fill="none" stroke-linecap="round" opacity=".6"/>
+      <path d="M250,450 Q300,486 350,450" stroke="#1d6b63" stroke-width="6" fill="none" stroke-linecap="round" opacity=".7"/>
+    </g>
+
+    <g transform="rotate(-3 300 300)">
+      <g filter="url(#ink)">
+        <!-- 얼굴 -->
+        <path d="M124,322 C120,232 190,172 300,172 C410,172 480,232 476,322 C484,398 470,450 410,474 C370,490 230,490 190,474 C130,450 116,398 124,322 Z" fill="url(#skin)"/>
+        <ellipse cx="172" cy="396" rx="36" ry="21" fill="#ee8f78" opacity=".55"/>
+        <ellipse cx="428" cy="396" rx="36" ry="21" fill="#ee8f78" opacity=".55"/>
+
+        <!-- 삿갓 끈: 얼굴 테두리를 따라 턱으로 -->
+        <path d="M128,250 Q110,400 214,480" stroke="#e5483b" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M472,250 Q490,400 386,480" stroke="#e5483b" stroke-width="9" fill="none" stroke-linecap="round"/>
+
+        <!-- 수염 -->
+        <g stroke="#4a3a32" stroke-width="3.6" fill="none" stroke-linecap="round">
+          <path d="M150,404 L70,398"/><path d="M154,420 L76,436"/>
+          <path d="M450,404 L530,398"/><path d="M446,420 L524,436"/>
+        </g>
+
+        <!-- 앞머리 -->
+        <path d="M118,318 C100,250 150,196 300,190 C450,196 500,250 482,318 Q470,300 456,292 Q452,312 440,322 Q430,290 410,276 Q404,298 386,306 Q378,280 356,266 Q348,292 326,300 Q318,276 300,262 Q288,284 266,296 Q260,274 240,264 Q228,290 206,302 Q202,282 188,274 Q178,302 160,318 Q154,302 144,296 Q134,312 132,334 Q122,328 118,318 Z" fill="#1c181b"/>
+        <g stroke="#514950" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8">
+          <path d="M250,214 C232,232 220,252 214,274"/>
+          <path d="M350,214 C368,232 380,252 386,274"/>
+        </g>
+
+        <!-- 눈: 뜬 눈 · 윙크 -->
+        <ellipse cx="223" cy="344" rx="17" ry="22" fill="#2a1d17"/>
+        <circle cx="229" cy="335" r="6.5" fill="#fff"/>
+        <circle cx="216" cy="354" r="3" fill="#fff" opacity=".8"/>
+        <path d="M346,348 Q377,320 408,348" stroke="#2a1d17" stroke-width="9" fill="none" stroke-linecap="round"/>
+
+        <!-- 동그란 안경 -->
+        <g fill="#fff" fill-opacity=".16" stroke="#17151a" stroke-width="10">
+          <circle cx="223" cy="342" r="52"/>
+          <circle cx="377" cy="342" r="52"/>
+        </g>
+        <path d="M275,334 Q300,322 325,334" stroke="#17151a" stroke-width="9" fill="none"/>
+        <path d="M171,330 L144,322 M429,330 L456,322" stroke="#17151a" stroke-width="9" stroke-linecap="round"/>
+
+        <!-- 코와 웃는 입 -->
+        <path d="M287,400 Q300,394 313,400 Q311,410 300,415 Q289,410 287,400 Z" fill="#a8625a"/>
+        <path d="M262,424 Q300,476 338,424 Q300,436 262,424 Z" fill="#7a2e2a" stroke="#2a1d17" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M282,446 Q300,462 318,446 Q300,440 282,446 Z" fill="#ef7f7a"/>
+      </g>
+
+      <!-- 논라(삿갓)와 귀 -->
+      <g filter="url(#ink)" transform="rotate(-7 300 180)">
+        <!-- 삿갓 -->
+        <path d="M58,212 L300,-34 L542,212 Q300,262 58,212 Z" fill="url(#straw)" stroke="#a97c3a" stroke-width="5" stroke-linejoin="round"/>
+        <g stroke="#b88a45" stroke-width="3.5" fill="none" opacity=".75">
+          <path d="M106,166 Q300,206 494,166"/>
+          <path d="M154,118 Q300,148 446,118"/>
+          <path d="M202,70 Q300,90 398,70"/>
+          <path d="M250,20 Q300,30 350,20"/>
+        </g>
+        <g stroke="#c99b55" stroke-width="2.5" opacity=".7">
+          <path d="M300,-30 L210,230"/><path d="M300,-30 L300,236"/><path d="M300,-30 L390,230"/>
+        </g>
+        <!-- 삿갓 밖으로 나온 귀 -->
+        <ellipse cx="196" cy="104" rx="38" ry="11" fill="#5a3f1c" opacity=".55"/>
+        <ellipse cx="404" cy="104" rx="38" ry="11" fill="#5a3f1c" opacity=".55"/>
+        <path d="M164,106 C156,64 160,28 172,4 Q178,-8 190,0 C212,22 228,56 232,104 Z" fill="#1c181b"/>
+        <path d="M436,106 C444,64 440,28 428,4 Q422,-8 410,0 C388,22 372,56 368,104 Z" fill="#1c181b"/>
+        <path d="M180,94 C176,66 178,42 184,24 C198,42 208,66 212,94 Z" fill="#d49a92"/>
+        <path d="M420,94 C424,66 422,42 416,24 C402,42 392,66 388,94 Z" fill="#d49a92"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- 오른쪽 위: 베트남 국기 -->
+  <g filter="url(#ink)">
+    <path d="M462,422 L478,40" stroke="#7b5a32" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="478" cy="36" r="9" fill="#f2c94c"/>
+    <path d="M476,48 C510,36 540,62 588,46 L584,150 C540,166 508,140 472,152 Z" fill="url(#flag)" stroke="#a81f17" stroke-width="3" stroke-linejoin="round"/>
+    <path transform="translate(530 99) rotate(-6)" d="M0,-30 L7.05,-9.7 L28.5,-9.3 L11.4,3.7 L17.6,24.3 L0,12 L-17.6,24.3 L-11.4,3.7 L-28.5,-9.3 L-7.05,-9.7 Z" fill="#ffdd2e"/>
+  </g>
+  <!-- 깃대를 쥔 앞발 -->
+  <g filter="url(#ink)">
+    <path d="M500,600 C500,540 492,470 478,430 L436,442 C440,490 446,550 444,600 Z" fill="url(#shirt)"/>
+    <ellipse cx="462" cy="418" rx="30" ry="26" fill="url(#skin)" stroke="#c98a5a" stroke-width="3"/>
+    <path d="M446,410 Q452,402 460,410 M460,404 Q468,396 476,406" stroke="#c98a5a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <rect width="600" height="600" filter="url(#paper)" opacity=".28"/>
+</svg>

@@ -1,0 +1,50 @@
+id,situation_no,situation,vi,pron_ko,meaning_ko,tts_text
+1-01,1,기본 표현,Xin chào.,씬 짜오,안녕하세요.,Xin chào.
+1-02,1,기본 표현,Cảm ơn.,깜 언,고맙습니다.,Cảm ơn.
+1-03,1,기본 표현,Xin lỗi.,씬 로이,미안해요. / 실례합니다.,Xin lỗi.
+1-04,1,기본 표현,Không sao.,콩 싸오,괜찮아요.,Không sao.
+1-05,1,기본 표현,Vâng. / Không.,벙 / 콩,네. / 아니요.,Vâng. Không.
+1-06,1,기본 표현,Tôi không hiểu.,또이 콩 히에우,이해하지 못했어요.,Tôi không hiểu.
+1-07,1,기본 표현,Nói chậm lại được không?,노이 쩜 라이 드억 콩,천천히 말해 줄 수 있어요?,Nói chậm lại được không?
+1-08,1,기본 표현,Tôi là người Hàn Quốc.,또이 라 응으어이 한 꾸옥,저는 한국 사람이에요.,Tôi là người Hàn Quốc.
+2-01,2,식당,Cho tôi xem thực đơn.,쪼 또이 쌤 특 던,메뉴판 보여 주세요.,Cho tôi xem thực đơn.
+2-02,2,식당,Cho tôi cái này.,쪼 또이 까이 나이,이거 주세요.,Cho tôi cái này.
+2-03,2,식당,Cho tôi hai bát phở bò.,쪼 또이 하이 밧 퍼 보,소고기 쌀국수 두 그릇 주세요.,Cho tôi hai bát phở bò.
+2-04,2,식당,Không cho rau mùi.,콩 쪼 자우 무이,고수는 빼 주세요.,Không cho rau mùi.
+2-05,2,식당,Không cay.,콩 까이,안 맵게 해 주세요.,Không cay.
+2-06,2,식당,Ngon quá!,응온 꽈,정말 맛있어요!,Ngon quá!
+2-07,2,식당,Nhà vệ sinh ở đâu?,냐 베 씽 어 더우,화장실이 어디예요?,Nhà vệ sinh ở đâu?
+2-08,2,식당,Tính tiền cho tôi.,띵 띠엔 쪼 또이,계산해 주세요.,Tính tiền cho tôi.
+3-01,3,카페,Cho tôi một cà phê sữa đá.,쪼 또이 못 까 페 쓰어 다,연유 아이스커피 한 잔 주세요.,Cho tôi một cà phê sữa đá.
+3-02,3,카페,Ít đường thôi.,잇 드엉 토이,설탕은 조금만요.,Ít đường thôi.
+3-03,3,카페,Không đá.,콩 다,얼음은 빼 주세요.,Không đá.
+3-04,3,카페,Mang về.,망 베,포장이요.,Mang về.
+3-05,3,카페,Mật khẩu wifi là gì?,멋 커우 와이파이 라 지,와이파이 비밀번호가 뭐예요?,Mật khẩu wifi là gì?
+4-01,4,시장 · 가게,Cái này bao nhiêu tiền?,까이 나이 바오 니에우 띠엔,이거 얼마예요?,Cái này bao nhiêu tiền?
+4-02,4,시장 · 가게,Đắt quá!,닷 꽈,너무 비싸요!,Đắt quá!
+4-03,4,시장 · 가게,Bớt cho tôi một chút.,벗 쪼 또이 못 쭛,조금 깎아 주세요.,Bớt cho tôi một chút.
+4-04,4,시장 · 가게,Tôi chỉ xem thôi.,또이 찌 쌤 토이,그냥 구경만 할게요.,Tôi chỉ xem thôi.
+4-05,4,시장 · 가게,Có màu khác không?,꼬 마우 칵 콩,다른 색 있어요?,Có màu khác không?
+4-06,4,시장 · 가게,Tôi lấy cái này.,또이 러이 까이 나이,이걸로 할게요.,Tôi lấy cái này.
+4-07,4,시장 · 가게,Trả bằng thẻ được không?,짜 방 테 드억 콩,카드로 계산돼요?,Trả bằng thẻ được không?
+5-01,5,택시 · 그랩,Cho tôi đến địa chỉ này.,쪼 또이 덴 디아 찌 나이,이 주소로 가 주세요.,Cho tôi đến địa chỉ này.
+5-02,5,택시 · 그랩,Đi sân bay.,디 썬 바이,공항으로 가 주세요.,Đi sân bay.
+5-03,5,택시 · 그랩,Bao lâu nữa thì đến?,바오 러우 느어 티 덴,얼마나 더 가야 해요?,Bao lâu nữa thì đến?
+5-04,5,택시 · 그랩,Đi chậm thôi.,디 쩜 토이,천천히 가 주세요.,Đi chậm thôi.
+5-05,5,택시 · 그랩,Dừng ở đây.,증 어 더이,여기 세워 주세요.,Dừng ở đây.
+6-01,6,길 묻기,~ ở đâu?,~ 어 더우,~는 어디예요?,Ở đâu?
+6-02,6,길 묻기,Có xa không?,꼬 싸 콩,멀어요?,Có xa không?
+6-03,6,길 묻기,Đi bộ được không?,디 보 드억 콩,걸어서 갈 수 있어요?,Đi bộ được không?
+6-04,6,길 묻기,Đi thẳng.,디 탕,곧장 가요.,Đi thẳng.
+6-05,6,길 묻기,Rẽ trái. / Rẽ phải.,재 짜이 / 재 파이,왼쪽으로 / 오른쪽으로 돌아요.,Rẽ trái. Rẽ phải.
+7-01,7,호텔,Tôi đã đặt phòng.,또이 다 닷 퐁,방을 예약했어요.,Tôi đã đặt phòng.
+7-02,7,호텔,Mấy giờ trả phòng?,머이 저 짜 퐁,체크아웃은 몇 시예요?,Mấy giờ trả phòng?
+7-03,7,호텔,Gửi hành lý được không?,그이 하인 리 드억 콩,짐을 맡길 수 있어요?,Gửi hành lý được không?
+7-04,7,호텔,Phòng không có nước nóng.,퐁 콩 꼬 느억 농,방에 뜨거운 물이 안 나와요.,Phòng không có nước nóng.
+7-05,7,호텔,Điều hòa bị hỏng.,디에우 호아 비 홍,에어컨이 고장 났어요.,Điều hòa bị hỏng.
+8-01,8,아플 때 · 급할 때,Cứu tôi với!,끄우 또이 버이,도와주세요!,Cứu tôi với!
+8-02,8,아플 때 · 급할 때,Gọi cảnh sát!,고이 까인 쌋,경찰 불러 주세요!,Gọi cảnh sát!
+8-03,8,아플 때 · 급할 때,Gọi xe cấp cứu!,고이 쌔 껍 끄우,구급차 불러 주세요!,Gọi xe cấp cứu!
+8-04,8,아플 때 · 급할 때,Hiệu thuốc ở đâu?,히에우 투옥 어 더우,약국이 어디예요?,Hiệu thuốc ở đâu?
+8-05,8,아플 때 · 급할 때,Tôi bị đau bụng.,또이 비 다우 붕,배가 아파요.,Tôi bị đau bụng.
+8-06,8,아플 때 · 급할 때,Tôi bị mất hộ chiếu.,또이 비 멋 호 찌에우,여권을 잃어버렸어요.,Tôi bị mất hộ chiếu.

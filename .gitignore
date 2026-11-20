@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-web
+*.ait
+
+# 내부 문서 · 작업 파일은 공개 저장소에 올리지 않아요
+PLAN.md
+REVIEW_*.md
+TRAVEL_PHRASES.md
+wireframe.html
+/samples/
+/audio/
+assets/qr-*.png
