@@ -2,12 +2,12 @@ import { createContext, useContext, useMemo, useState } from "react";
 import { PHRASES, WORDS, itemByKey, isPhrase, isWord, type Item } from "../lib/data";
 import "../lib/lessons";
 import { LANGUAGES_READY, LESSONS_READY } from "../lib/features";
-import { APP_URL, WEB } from "../lib/platform";
+import { WEB } from "../lib/platform";
 import { EMPTY, dueKeys, markStudied, reviewAnswer } from "../lib/progress";
 import { makeQuiz } from "../lib/quiz";
 import type { Go } from "../routes";
 import { useStore } from "../store";
-import { InfiniteList, ItemRow, NavBar, QuestionView, Vi } from "../ui";
+import { AppOnlySheet, InfiniteList, ItemRow, NavBar, QuestionView, Vi } from "../ui";
 
 export const LANGUAGES: { code: string; name: string }[] = [
   { code: "ko", name: "한국어" },
@@ -45,23 +45,6 @@ function Row({ label, value, onClick, strong = false }: { label: string; value?:
 const LockedContext = createContext<(() => void) | null>(null);
 const useLocked = () => useContext(LockedContext);
 
-/** 웹 버전에서 잠긴 메뉴를 누르면 보여 줘요. */
-function AppOnlySheet({ onClose }: { onClose: () => void }) {
-  return (
-    <div className="sheet-backdrop" onClick={onClose}>
-      <div className="sheet" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
-        <h2 className="big">앱에서 쓸 수 있어요</h2>
-        <p className="t">추가 기능을 쓰기 위해서는 앱으로 접속해 주세요.</p>
-        <a className="btn" href={APP_URL} target="_blank" rel="noopener" onClick={onClose}>
-          앱으로 연결하기
-        </a>
-        <button type="button" className="btn ghost" onClick={onClose}>
-          닫기
-        </button>
-      </div>
-    </div>
-  );
-}
 
 /** 11 더보기 */
 export function MoreScreen({ go }: { go: Go }) {

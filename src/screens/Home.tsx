@@ -1,12 +1,13 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { courseStatus, currentDay, tasksFor } from "../lib/course";
 import { daysBetween } from "../lib/date";
 import { PHRASES, TOTAL_DAYS, wordsOfDay } from "../lib/data";
 import { BASIC_DAYS, LESSONS, partOf } from "../lib/lessons";
+import { WEB } from "../lib/platform";
 import { dueKeys, streak } from "../lib/progress";
 import type { Go, Tab } from "../routes";
 import { useStore } from "../store";
-import { ItemRow, NavBar, Vi } from "../ui";
+import { AppOnlySheet, ItemRow, NavBar, Vi } from "../ui";
 
 function Todo({ done, title, sub, onClick }: { done: boolean; title: ReactNode; sub: ReactNode; onClick?: () => void }) {
   return (
@@ -25,6 +26,7 @@ function Todo({ done, title, sub, onClick }: { done: boolean; title: ReactNode; 
 
 export function HomeScreen({ go, selectTab }: { go: Go; selectTab: (tab: Tab) => void }) {
   const { p, today } = useStore();
+  const [appOnly, setAppOnly] = useState(false);
   const phrase = PHRASES[Math.abs(daysBetween("2026-01-01", today)) % PHRASES.length];
 
   // 시작 전: 커리큘럼을 먼저 소개해요.
@@ -92,7 +94,7 @@ export function HomeScreen({ go, selectTab }: { go: Go; selectTab: (tab: Tab) =>
       {status.kind === "doneToday" && (
         <section className="box done-box">
           <h2 className="big">오늘 할 일 끝! 🎉</h2>
-          <p className="t">Day {status.day} 통과예요. 다음 Day는 내일 열려요. 그동안 복습이나 여행회화를 해 보세요.</p>
+          <p className="t">Day {status.day} 통과예요. 다음 Day는 내일 열려요. 그동안 {WEB ? "여행회화를" : "복습이나 여행회화를"} 해 보세요.</p>
         </section>
       )}
       {behind && <p className="note">지난번 할 일을 다 끝내지 못해서 오늘도 Day {day}예요. 오늘 마저 끝내면 내일 다음 Day가 열려요.</p>}
@@ -130,7 +132,7 @@ export function HomeScreen({ go, selectTab }: { go: Go; selectTab: (tab: Tab) =>
               done={tasks.testDone}
               title="랜덤 시험 1회"
               sub="단어 · 회화 · 배우기 중 하나 (10문제)"
-              onClick={tasks.testDone ? undefined : () => go({ s: "testSetup", kind: "word" })}
+              onClick={tasks.testDone ? undefined : WEB ? () => setAppOnly(true) : () => go({ s: "testSetup", kind: "word" })}
             />
           )}
         </>
@@ -140,10 +142,18 @@ export function HomeScreen({ go, selectTab }: { go: Go; selectTab: (tab: Tab) =>
         복습 <small>할 일과 따로, 하면 좋아요</small>
       </h2>
       <div className="grid2">
-        <button type="button" className="stat" onClick={() => go({ s: "review", source: "due" })} disabled={!due}>
-          <b>{due}</b>
-          <span className="t3">오늘 복습할 카드</span>
-        </button>
+        {/* 웹 버전은 복습을 잠그고 앱으로 안내해요. */}
+        {WEB ? (
+          <button type="button" className="stat" onClick={() => setAppOnly(true)}>
+            <b>🔒</b>
+            <span className="t3">복습은 앱에서</span>
+          </button>
+        ) : (
+          <button type="button" className="stat" onClick={() => go({ s: "review", source: "due" })} disabled={!due}>
+            <b>{due}</b>
+            <span className="t3">오늘 복습할 카드</span>
+          </button>
+        )}
         <div className="stat">
           <b>{streak(p, today)}일</b>
           <span className="t3">연속 학습</span>
@@ -151,6 +161,7 @@ export function HomeScreen({ go, selectTab }: { go: Go; selectTab: (tab: Tab) =>
       </div>
       <h2 className="h">오늘의 한 마디</h2>
       <ItemRow item={phrase} />
+      {WEB && appOnly && <AppOnlySheet onClose={() => setAppOnly(false)} />}
     </main>
   );
 }

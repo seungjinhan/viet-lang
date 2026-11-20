@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { play, usePlaying } from "./lib/audio";
 import { isPhrase, type Item } from "./lib/data";
+import { APP_URL } from "./lib/platform";
 import { toggleSaved } from "./lib/progress";
 import type { Question } from "./lib/quiz";
 import { TONE_NAMES, syllableTone, toneSpans } from "./lib/tones";
@@ -179,6 +180,24 @@ export function QuestionView({ q, picked, reveal, onPick }: { q: Question; picke
             </button>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+/** 웹 버전에서 잠긴 메뉴를 누르면 보여 줘요. */
+export function AppOnlySheet({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="sheet-backdrop" onClick={onClose}>
+      <div className="sheet" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+        <h2 className="big">앱에서 쓸 수 있어요</h2>
+        <p className="t">추가 기능을 쓰기 위해서는 앱으로 접속해 주세요.</p>
+        <a className="btn" href={APP_URL} target="_blank" rel="noopener" onClick={onClose}>
+          앱으로 연결하기
+        </a>
+        <button type="button" className="btn ghost" onClick={onClose}>
+          닫기
+        </button>
       </div>
     </div>
   );
