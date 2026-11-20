@@ -86,11 +86,12 @@ export function App() {
       {route.s === "check" && <CheckScreen day={route.day} back={back} selectTab={selectTab} />}
       {route.s === "situation" && <SituationScreen no={route.no} go={go} />}
       {route.s === "big" && <BigScreen itemKey={route.key} />}
-      {route.s === "saved" && <SavedScreen go={go} />}
-      {route.s === "review" && <ReviewScreen source={route.source} back={back} />}
-      {route.s === "testSetup" && <TestSetupScreen kind={route.kind} go={go} selectTab={selectTab} />}
-      {route.s === "test" && <TestScreen route={route} go={go} back={back} />}
-      {route.s === "language" && <LanguageScreen back={back} />}
+      {/* 복습 · 저장한 단어 · 시험 · 언어는 앱에서만 써요. 웹 빌드에는 이 화면 코드가 들어가지 않아요. */}
+      {!WEB && route.s === "saved" && <SavedScreen go={go} />}
+      {!WEB && route.s === "review" && <ReviewScreen source={route.source} back={back} />}
+      {!WEB && route.s === "testSetup" && <TestSetupScreen kind={route.kind} go={go} selectTab={selectTab} />}
+      {!WEB && route.s === "test" && <TestScreen route={route} go={go} back={back} />}
+      {!WEB && route.s === "language" && <LanguageScreen back={back} />}
       {route.s === "about" && <AboutScreen />}
       {isTab && <TabBar current={route.s as Tab} onSelect={selectTab} />}
     </div>

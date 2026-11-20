@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { PHRASES, WORDS, itemByKey, isPhrase, isWord, type Item } from "../lib/data";
 import "../lib/lessons";
 import { LANGUAGES_READY, LESSONS_READY } from "../lib/features";
@@ -21,19 +21,6 @@ export const LANGUAGES: { code: string; name: string }[] = [
 ];
 
 function Row({ label, value, onClick, strong = false }: { label: string; value?: string; onClick?: () => void; strong?: boolean }) {
-  const onLocked = useLocked();
-  // 웹 버전은 앱 정보만 열고, 나머지는 잠가서 앱으로 안내해요.
-  if (WEB && onLocked) {
-    return (
-      <button type="button" className="row locked" onClick={onLocked} aria-label={`${label} (앱에서 쓸 수 있어요)`}>
-        <span className="locked-label">
-          <LockIcon size={16} />
-          <span className={strong ? "strong" : ""}>{label}</span>
-        </span>
-        <span className="v">앱에서</span>
-      </button>
-    );
-  }
   return (
     <button type="button" className="row" onClick={onClick} disabled={!onClick}>
       <span className={strong ? "strong" : ""}>{label}</span>
@@ -45,19 +32,51 @@ function Row({ label, value, onClick, strong = false }: { label: string; value?:
   );
 }
 
-const LockedContext = createContext<(() => void) | null>(null);
-const useLocked = () => useContext(LockedContext);
+/** 웹 버전 더보기에 보이는 잠긴 메뉴 (이름만 있고 기능 코드는 웹 빌드에 들어가지 않아요) */
+const WEB_LOCKED: { group: string; labels: string[] }[] = [
+  { group: "공부", labels: ["복습", "저장한 단어"] },
+  { group: "시험보기 (랜덤)", labels: ["단어 시험", "회화 시험", "배우기 시험"] },
+  { group: "설정", labels: ["음성 속도", "한글 발음 힌트", "기준 발음", "학습 기록 지우기"] },
+];
 
+/** 웹 버전 더보기: 앱 정보만 열고, 나머지는 잠가서 앱으로 안내해요. */
+function WebMoreScreen({ go }: { go: Go }) {
+  const [appOnly, setAppOnly] = useState(false);
+  return (
+    <main className="screen">
+      <NavBar title="더보기" />
+      {WEB_LOCKED.map((g) => (
+        <div key={g.group}>
+          <p className="group-title">{g.group}</p>
+          {g.labels.map((label) => (
+            <button key={label} type="button" className="row locked" onClick={() => setAppOnly(true)} aria-label={`${label} (앱에서 쓸 수 있어요)`}>
+              <span className="locked-label">
+                <LockIcon size={16} />
+                <span>{label}</span>
+              </span>
+              <span className="v">앱에서</span>
+            </button>
+          ))}
+        </div>
+      ))}
+      <Row label="앱 정보" value="버전 0.1.0" onClick={() => go({ s: "about" })} />
+      {appOnly && <AppOnlySheet onClose={() => setAppOnly(false)} />}
+    </main>
+  );
+}
 
 /** 11 더보기 */
 export function MoreScreen({ go }: { go: Go }) {
+  if (WEB) return <WebMoreScreen go={go} />;
+  return <AppMoreScreen go={go} />;
+}
+
+function AppMoreScreen({ go }: { go: Go }) {
   const { p, today, update } = useStore();
   const [confirmReset, setConfirmReset] = useState(false);
   const due = dueKeys(p, today).length;
   const lang = LANGUAGES.find((l) => l.code === p.settings.language)?.name ?? "한국어";
-  const [appOnly, setAppOnly] = useState(false);
   return (
-    <LockedContext.Provider value={WEB ? () => setAppOnly(true) : null}>
     <main className="screen">
       <NavBar title="더보기" />
       <p className="group-title">공부</p>
@@ -73,9 +92,7 @@ export function MoreScreen({ go }: { go: Go }) {
       {p.settings.language === "ko" && <Row label="한글 발음 힌트" value={p.settings.hint ? "보이기" : "숨기기"} onClick={() => update((x) => ({ ...x, settings: { ...x.settings, hint: !x.settings.hint } }))} />}
       <Row label="기준 발음" value="북부(하노이)" />
       <Row label="학습 기록 지우기" onClick={() => setConfirmReset(true)} />
-      <LockedContext.Provider value={null}>
-        <Row label="앱 정보" value="버전 0.1.0" onClick={() => go({ s: "about" })} />
-      </LockedContext.Provider>
+      <Row label="앱 정보" value="버전 0.1.0" onClick={() => go({ s: "about" })} />
       {confirmReset && (
         <div className="sheet-backdrop" onClick={() => setConfirmReset(false)}>
           <div className="sheet" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
@@ -97,9 +114,7 @@ export function MoreScreen({ go }: { go: Go }) {
           </div>
         </div>
       )}
-      {WEB && appOnly && <AppOnlySheet onClose={() => setAppOnly(false)} />}
     </main>
-    </LockedContext.Provider>
   );
 }
 
