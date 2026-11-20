@@ -100,26 +100,47 @@ button:disabled {
   font-size: 13px;
 }
 
-/* 웹 버전 상단: 토스 앱으로 바로가기 */
-.app-link {
-  position: sticky;
-  top: 0;
-  z-index: 15;
+/* 웹 버전 맨 위 토스 앱 바로가기 (퓨처셀프 웹과 같은 모양). 화면과 함께 위로 올라가요. */
+.app-link-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
   padding: 10px 16px;
-  background: #fff1ef;
-  color: var(--ink-2);
-  font-size: 13px;
-  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  background: #fdf1ef;
 }
 
-.app-link b {
+.app-link-icon {
   flex: none;
-  color: var(--ng);
+  border-radius: 8px;
+}
+
+.app-link-text {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.app-link-text strong {
+  color: var(--ink);
+}
+
+.app-link-text span {
+  color: var(--ink-2);
+}
+
+.app-link-button {
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--ng);
+  color: #fff;
+  font-size: 13px;
   font-weight: 700;
+  text-decoration: none;
 }
 
 a.btn {

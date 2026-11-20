@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import appIcon from "./assets/app-icon-96.png";
 import { LESSONS_READY } from "./lib/features";
 import { APP_URL, WEB, logEvent } from "./lib/platform";
 import { TABS, type Route, type Tab } from "./routes";
@@ -57,10 +58,16 @@ export function App() {
         </Banner>
       )}
       {WEB && (
-        <a className="app-link" href={APP_URL} target="_blank" rel="noopener">
-          <span>토스 앱에서 더 많은 기능을 써 보세요</span>
-          <b>앱으로 바로가기 ›</b>
-        </a>
+        <div className="app-link-bar">
+          <img className="app-link-icon" src={appIcon} alt="" width="32" height="32" />
+          <div className="app-link-text">
+            <strong>베트남어 배우기 앱</strong>
+            <span>토스에서 더 편하게 배워요</span>
+          </div>
+          <a className="app-link-button" href={APP_URL} target="_blank" rel="noopener">
+            앱 바로가기
+          </a>
+        </div>
       )}
       {/* 웹 버전에는 토스 내비게이션 바가 없어서 뒤로 버튼을 둬요. 토스 빌드에는 들어가지 않아요. */}
       {(WEB || import.meta.env.DEV) && !isTab && (
